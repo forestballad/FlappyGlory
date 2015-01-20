@@ -17,9 +17,4 @@ public class ObstacleBird : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-
-	public void lowerObstacleSpeed(){
-
-
-	}
 }

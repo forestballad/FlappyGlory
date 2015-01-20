@@ -74,7 +74,7 @@ public class PlayerBird : MonoBehaviour {
 			returnToTitle ();
 		} else if (CurrentBird == "SuoKeSaEr"){
 			hitCounter++;
-			slowObstacleSpawn();
+			Debug.Log(hitCounter);
 			if (hitCounter >= 10) returnToTitle_SP03();
 		}
 	}
@@ -94,7 +94,7 @@ public class PlayerBird : MonoBehaviour {
 	}
 
 	void returnToTitle_SP03(){
-		GameObject.Find ("DataAgentObject").GetComponent<DataAgent> ().UnlockCharacter (5);
+		//GameObject.Find ("DataAgentObject").GetComponent<DataAgent> ().UnlockCharacter (5);
 		Application.LoadLevel ("title");
 	}
 }

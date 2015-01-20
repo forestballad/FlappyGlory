@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class ObstacleBird : MonoBehaviour {
-
 	public Vector2 velocity = new Vector2(-4,0);
 	public float range = 4;
 
@@ -14,6 +13,13 @@ public class ObstacleBird : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (transform.position.x < -16) {
+			Destroy(gameObject);
+		}
+	}
+
+	public void lowerObstacleSpeed(){
+
+
 	}
 }

@@ -22,11 +22,11 @@ public class DataAgent : MonoBehaviour {
 		if (!PlayerPrefs.HasKey ("FirstBlood")) {
 			Debug.Log("InitNew");
 			InitializePlayerPref();
-			InitializePlayerLockStatus();
+			InitializeData();
 		}
 		else {
 			Debug.Log("InitFromPref");
-			ReadLockStatusFromPlayerPref();
+			ReadDataFromPlayerPref();
 		}
 	}
 
@@ -64,7 +64,7 @@ public class DataAgent : MonoBehaviour {
 		PlayerPrefs.SetInt ("C13", 1);
 	}
 
-	void InitializePlayerLockStatus(){
+	void InitializeData(){
 		CharacterLockTracker [0] = true;
 		CharacterLockTracker [1] = false;
 		CharacterLockTracker [2] = false;
@@ -81,7 +81,7 @@ public class DataAgent : MonoBehaviour {
 		CharacterLockTracker [13] = false;
 	}
 
-	void ReadLockStatusFromPlayerPref(){
+	void ReadDataFromPlayerPref(){
 		CharacterLockTracker[0] = IBconvert(PlayerPrefs.GetInt("C00"));
 		CharacterLockTracker[1] = IBconvert(PlayerPrefs.GetInt("C01"));
 		CharacterLockTracker[2] = IBconvert(PlayerPrefs.GetInt("C02"));
@@ -98,13 +98,41 @@ public class DataAgent : MonoBehaviour {
 		CharacterLockTracker[13] = IBconvert(PlayerPrefs.GetInt("C13"));
 	}
 
+	public void SaveDataToPlayerPref(){
+		PlayerPrefs.SetInt ("C00", BIConvert (CharacterLockTracker [0]));
+		PlayerPrefs.SetInt ("C01", BIConvert (CharacterLockTracker [1]));
+		PlayerPrefs.SetInt ("C02", BIConvert (CharacterLockTracker [2]));
+		PlayerPrefs.SetInt ("C03", BIConvert (CharacterLockTracker [3]));
+		PlayerPrefs.SetInt ("C04", BIConvert (CharacterLockTracker [4]));
+		PlayerPrefs.SetInt ("C05", BIConvert (CharacterLockTracker [5]));
+		PlayerPrefs.SetInt ("C06", BIConvert (CharacterLockTracker [6]));
+		PlayerPrefs.SetInt ("C07", BIConvert (CharacterLockTracker [7]));
+		PlayerPrefs.SetInt ("C08", BIConvert (CharacterLockTracker [8]));
+		PlayerPrefs.SetInt ("C09", BIConvert (CharacterLockTracker [9]));
+		PlayerPrefs.SetInt ("C10", BIConvert (CharacterLockTracker [10]));
+		PlayerPrefs.SetInt ("C11", BIConvert (CharacterLockTracker [11]));
+		PlayerPrefs.SetInt ("C12", BIConvert (CharacterLockTracker [12]));
+		PlayerPrefs.SetInt ("C13", BIConvert (CharacterLockTracker [13]));
+		PlayerPrefs.Save ();
+	}
 
-
+	public void ClearAllData(){
+		InitializeData ();
+		InitializePlayerPref();
+	}
+	
 	bool IBconvert(int num){
 		if (num == 1)
 			return false;
 		else 
 			return true;
+	}
+
+	int BIConvert(bool bit){
+		if (bit == true)
+			return 0;
+		else
+			return 1;
 	}
 
 	public bool CharacterLockStatus(int CharacterNum){

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class GenerateBirdObstacle : MonoBehaviour {
 	public GameObject rocks;
+	public string currentBird = "default";
 	public int score;
 	public bool isDead = false;
 	Text scoreDisplay;
@@ -15,8 +16,15 @@ public class GenerateBirdObstacle : MonoBehaviour {
 	}
 	
 	void CreateObstacle () {
-		Instantiate (rocks);
-		Invoke("AddScore", 3f);
+		GameObject newRock = Instantiate (rocks);
+		if (currentBird == "default") {
+			Invoke ("AddScore", 3f);
+		}
+		else if (currentBird == "SuoKeSaEr") {
+			float speed = 1.5f;
+			newRock.GetComponent<ObstacleBird>().velocity = new Vector2(-4/speed,0);
+			Invoke("AddScore",3/speed);
+		}
 	}
 
 	void AddScore(){

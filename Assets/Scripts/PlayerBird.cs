@@ -12,12 +12,13 @@ public class PlayerBird : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GetComponent<SpriteRenderer>().sprite = BirdUp;
 		if (CurrentBird == "YeYuShengFan")
 			Invoke ("returnToTitle_SP02", 50f);
-		if (CurrentBird == "YeYuShengFan") {
-			Invoke ("returnToTitle_SP03", 180f);
-			hitCounter = 0;
+		if (CurrentBird == "SuoKeSaEr") {
+			GameObject.Find("Scripts").GetComponent<GenerateBirdObstacle>().currentBird ="SuoKeSaEr";
 		}
+		hitCounter = 0;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +33,7 @@ public class PlayerBird : MonoBehaviour {
 		else{
 			GetComponent<SpriteRenderer>().sprite = BirdDown;
 		}
+		transform.localPosition = new Vector3 (-3.49f,transform.position.y,0);
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
@@ -43,6 +45,7 @@ public class PlayerBird : MonoBehaviour {
 		GameObject ObstacleGenerator = GameObject.Find("Scripts");
 		ObstacleGenerator.GetComponent<GenerateBirdObstacle>().isDead = true;
 		scoreAtDeath = ObstacleGenerator.GetComponent<GenerateBirdObstacle>().score;
+		GameObject.Find ("DataAgentObject").GetComponent<DataAgent> ().setHighScore(CurrentBird,scoreAtDeath);
 	}
 
 	void Die(){
@@ -64,7 +67,7 @@ public class PlayerBird : MonoBehaviour {
 			if (!isDead) {
 				MusicPlayer.GetComponent<AudioSource>().Play ();
 				isDead = true;
-				Invoke ("returnToTitle_SP01", 50f);
+				Invoke ("returnToTitle_SP01", 46f);
 			}
 		} else if (CurrentBird == "YeYuShengFan") {
 			ScoreCheck();
@@ -73,28 +76,38 @@ public class PlayerBird : MonoBehaviour {
 			}
 			returnToTitle ();
 		} else if (CurrentBird == "SuoKeSaEr"){
+			ScoreCheck();
+			if (scoreAtDeath > 5){
+				GameObject.Find("DataAgentObject").GetComponent<DataAgent>().UnlockCharacter(5);
+			}
+			returnToTitle();
+		} else if (CurrentBird == "WangBuLiuXing"){
 			hitCounter++;
-			Debug.Log(hitCounter);
-			if (hitCounter >= 10) returnToTitle_SP03();
+			float sizeCoeffcient = Random.value*0.2f+1f;
+			transform.localScale = new Vector3( transform.localScale.x * sizeCoeffcient, transform.localScale.y * sizeCoeffcient, 0f);
+			BoxCollider2D col = (BoxCollider2D)transform.GetComponent<Collider2D>();
+			col.size = new Vector3(transform.localScale.x , transform.localScale.y, 0f);
+			if (transform.localScale.x > 3){
+				ScoreCheck();
+				returnToTitle();
+			}
 		}
 	}
 
 	void returnToTitle(){
-		Application.LoadLevel ("title");
+		Application.LoadLevel ("menu_game");
 	}
 
 	void returnToTitle_SP01(){
 		GameObject.Find ("DataAgentObject").GetComponent<DataAgent> ().UnlockCharacter (3);
-		Application.LoadLevel ("title");
+		Application.LoadLevel ("menu_game");
 	}
 
 	void returnToTitle_SP02(){
 		GameObject.Find ("DataAgentObject").GetComponent<DataAgent> ().UnlockCharacter (4);
-		Application.LoadLevel ("title");
+		Application.LoadLevel ("menu_game");
 	}
 
 	void returnToTitle_SP03(){
-		//GameObject.Find ("DataAgentObject").GetComponent<DataAgent> ().UnlockCharacter (5);
-		Application.LoadLevel ("title");
 	}
 }

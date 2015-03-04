@@ -23,10 +23,10 @@ public class PlayerBird : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyUp ("space")) {
-			rigidbody2D.velocity = Vector2.zero;
-			rigidbody2D.AddForce(jumpForce);
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			GetComponent<Rigidbody2D>().AddForce(jumpForce);
 		}
-		if (rigidbody2D.velocity.y >= 0) {
+		if (GetComponent<Rigidbody2D>().velocity.y >= 0) {
 			GetComponent<SpriteRenderer>().sprite = BirdUp;
 		}
 		else{
@@ -62,7 +62,7 @@ public class PlayerBird : MonoBehaviour {
 			ScoreCheck();
 			GameObject MusicPlayer = GameObject.Find ("MusicObject");
 			if (!isDead) {
-				MusicPlayer.audio.Play ();
+				MusicPlayer.GetComponent<AudioSource>().Play ();
 				isDead = true;
 				Invoke ("returnToTitle_SP01", 50f);
 			}

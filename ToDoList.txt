@@ -1,0 +1,16 @@
+UI: Score font & color in game scene
+UI: Score font & color in high score scene
+UI: Character/Score need to hide for locked birds
+UI: Buttons in title scene
+UI: Return to title button(in Game scene & High Score scene)
+GamePlay 6: 2/22/222 Pilar will be crushed
+GamePlay 7: 2 games going at the same time
+GamePlay 8: SuperMario Style game
+Gameplay 9: Bullet Hell!
+Gameplay 10: Click randomly appeared bird while playing
+Gameplay 11: Game is limited to be played in daytime
+Gameplay 12: Hit a pillar 100 times to unlock next level
+Gameplay 13: Just... the alpaca.
+Gameplay 14:? Click to replay the animation.
+
+NewGame+: The umbrella protection.

@@ -89,6 +89,7 @@ public class PlayerBird : MonoBehaviour {
 			col.size = new Vector3(transform.localScale.x , transform.localScale.y, 0f);
 			if (hitCounter > 5){
 				ScoreCheck();
+				if (scoreAtDeath > 10) GameObject.Find("DataAgentObject").GetComponent<DataAgent>().UnlockCharacter(6);
 				returnToTitle();
 			}
 		} else if (CurrentBird == "ShiBuZhuan"){

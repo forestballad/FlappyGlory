@@ -14,7 +14,7 @@ public class TitleMenuControl : MonoBehaviour {
 	}
 
 	public void EnterGameMenu(){
-		Application.LoadLevel ("menu_game");
+		Application.LoadLevel ("game");
 	}
 
 	public void EnterHighScore(){

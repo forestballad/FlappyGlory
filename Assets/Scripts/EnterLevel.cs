@@ -36,6 +36,7 @@ public class EnterLevel : MonoBehaviour {
 	}
 
 	public void StartLevel(){
+
 		if (CharacterLock) {
 			Application.LoadLevel(LevelName);
 		}

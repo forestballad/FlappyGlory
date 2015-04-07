@@ -18,5 +18,6 @@ public class TitleMenuControl : MonoBehaviour {
 	}
 
 	public void EnterHighScore(){
+		Application.LoadLevel ("highscore");
 	}
 }

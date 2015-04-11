@@ -251,4 +251,8 @@ public class DataAgent : MonoBehaviour {
 			HighScore[birdID] = newScore;
 		}
 	}
+
+	public int getHighScore(int birdID){
+		return HighScore [birdID];
+	}
 }

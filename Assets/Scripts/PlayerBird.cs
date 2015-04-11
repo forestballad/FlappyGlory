@@ -45,7 +45,7 @@ public class PlayerBird : MonoBehaviour {
 		GameObject ObstacleGenerator = GameObject.Find("Scripts");
 		ObstacleGenerator.GetComponent<GenerateBirdObstacle>().isDead = true;
 		scoreAtDeath = ObstacleGenerator.GetComponent<GenerateBirdObstacle>().score;
-		//GameObject.Find ("DataAgentObject").GetComponent<DataAgent> ().setHighScore(CurrentBird,scoreAtDeath);
+		GameObject.Find ("DataAgentObject").GetComponent<DataAgent> ().setHighScore(CurrentBird,scoreAtDeath);
 	}
 
 	void Die(){

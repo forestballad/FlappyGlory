@@ -17,6 +17,9 @@ public class EnterLevel : MonoBehaviour {
 		}
 		else {
 			gameObject.GetComponent<Image>().sprite = ActiveSprite;
+			if (CharacterNumber == 11){
+				gameObject.GetComponent<ActivateByTimeControl_ShiBuZhuan>().setActiveByTime();
+			}
 		}
 	}
 
@@ -32,13 +35,22 @@ public class EnterLevel : MonoBehaviour {
 		}
 		else {
 			gameObject.GetComponent<Image>().sprite = ActiveSprite;
+			if (CharacterNumber == 11){
+				gameObject.GetComponent<ActivateByTimeControl_ShiBuZhuan>().setActiveByTime();
+			}
 		}
 	}
 
 	public void StartLevel(){
-
 		if (CharacterLock) {
-			Application.LoadLevel(LevelName);
+			if (CharacterNumber == 11){
+				if (gameObject.GetComponent<ActivateByTimeControl_ShiBuZhuan>().checkActive()){
+					Application.LoadLevel(LevelName);
+				}
+			}
+			else {
+				Application.LoadLevel(LevelName);
+			}
 		}
 	}
 }

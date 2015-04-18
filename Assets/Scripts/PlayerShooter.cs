@@ -4,12 +4,16 @@ using System.Collections;
 public class PlayerShooter : MonoBehaviour {
 	public float NormalSpeed = 0f;
 	public float ShiftSpeed = 0f;
+	public float BulletSpeed = 0f;
 	public float BoundingBoxUp = 0f;
 	public float BoundingBoxDown = 0f;
 	public float BoundingBoxLeft = 0f;
 	public float BoundingBoxRight = 0f;
 	public Sprite NormalSprite;
 	public Sprite ShiftSprite;
+	public GameObject Bullet;
+	public int bulletInterval;
+	private int frameCount;
 	bool shiftStance = false;
 
 	// Use this for initialization
@@ -28,6 +32,10 @@ public class PlayerShooter : MonoBehaviour {
 		} else
 		{
 			gameObject.GetComponent<SpriteRenderer> ().sprite = NormalSprite;
+		}
+		frameCount ++;
+		if (frameCount % bulletInterval == 0) {
+			Instantiate (Bullet);
 		}
 	}
 

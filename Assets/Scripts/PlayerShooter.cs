@@ -33,10 +33,6 @@ public class PlayerShooter : MonoBehaviour {
 		{
 			gameObject.GetComponent<SpriteRenderer> ().sprite = NormalSprite;
 		}
-		frameCount ++;
-		if (frameCount % bulletInterval == 0) {
-			Instantiate (Bullet);
-		}
 	}
 
 	void FixedUpdate(){
@@ -57,5 +53,10 @@ public class PlayerShooter : MonoBehaviour {
 		if (targetY > BoundingBoxUp)	targetY = BoundingBoxUp;
 		if (targetY < BoundingBoxDown)	targetY = BoundingBoxDown;
 		gameObject.transform.position = new Vector2 (targetX, targetY);
+
+		frameCount ++;
+		if (frameCount % bulletInterval == 0 && Input.GetKey (KeyCode.Z)) {
+			Instantiate (Bullet);
+		}
 	}
 }

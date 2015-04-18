@@ -9,7 +9,7 @@ public class SelfBulletControl : MonoBehaviour {
 	void Start () {
 		player = GameObject.Find ("Player");
 		bulletSpeed = player.GetComponent<PlayerShooter> ().BulletSpeed;
-		gameObject.transform.position = new Vector2 (player.transform.position.x, player.transform.position.y);
+		gameObject.transform.position = new Vector2 (player.transform.position.x, player.transform.position.y+0.8f);
 	}
 	
 	// Update is called once per frame

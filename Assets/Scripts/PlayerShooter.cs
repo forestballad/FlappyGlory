@@ -59,4 +59,10 @@ public class PlayerShooter : MonoBehaviour {
 			Instantiate (Bullet);
 		}
 	}
+
+	void OnTriggerEnter2D (Collider2D other) {
+		if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy") {
+			Destroy(gameObject);
+		}
+	}
 }

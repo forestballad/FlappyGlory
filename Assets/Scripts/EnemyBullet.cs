@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyBullet01 : MonoBehaviour {
-	public Sprite bulletSprite;
+public class EnemyBullet : MonoBehaviour {
+	public Sprite bulletSprite1;
+	public Sprite bulletSprite2;
+	public Sprite bulletSprite3;
 	public float facing;
 	public float speed;
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<SpriteRenderer> ().sprite = bulletSprite;
+		int bulletType = (int)Random.Range (0, 3);
+		if (bulletType == 0) {
+			GetComponent<SpriteRenderer> ().sprite = bulletSprite1;
+		} else if (bulletType == 1) {
+			GetComponent<SpriteRenderer> ().sprite = bulletSprite2;
+		} else {
+			GetComponent<SpriteRenderer> ().sprite = bulletSprite3;
+		}
 	}
 
 	// Update is called once per frame

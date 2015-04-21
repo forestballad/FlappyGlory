@@ -9,7 +9,7 @@ public class EnemyShooter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating("LaunchProjectile", 2f, 2f);
+		InvokeRepeating("LaunchProjectile", 2f, 0.3f);
 	}
 	
 	// Update is called once per frame
@@ -28,9 +28,10 @@ public class EnemyShooter : MonoBehaviour {
 	}
 
 	void LaunchProjectile() {
+		int initialPosition = (int)Random.Range(0, 6)*10;
 		for (int i = 0;i < 360;i += 15){
 			GameObject newBullet = Instantiate(bullet);
-			newBullet.GetComponent<EnemyBullet01>().facing = i;
+			newBullet.GetComponent<EnemyBullet>().facing = i+initialPosition;
 			newBullet.transform.position = transform.position;
 		}
 	}

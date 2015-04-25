@@ -18,6 +18,8 @@ public class EnemyBullet : MonoBehaviour {
 		} else {
 			GetComponent<SpriteRenderer> ().sprite = bulletSprite3;
 		}
+		var collider = GetComponent<BoxCollider2D> ();
+		collider.size = GetComponent<SpriteRenderer> ().bounds.size;
 	}
 
 	// Update is called once per frame

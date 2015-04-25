@@ -15,7 +15,6 @@ public class BubbleEmerge : MonoBehaviour {
 	}
 
 	void emerge(){
-		Vector3 temp = new Vector3(0,0,-5f);
-		gameObject.transform.position += temp;
+		GetComponent<SpriteRenderer> ().enabled = true;
 	}
 }

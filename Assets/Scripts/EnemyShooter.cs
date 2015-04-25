@@ -28,8 +28,8 @@ public class EnemyShooter : MonoBehaviour {
 	}
 
 	void LaunchProjectile() {
-		int initialPosition = (int)Random.Range(0, 6)*10;
-		for (int i = 0;i < 360;i += 15){
+		int initialPosition = (int)Random.Range(0, 12)*5;
+		for (int i = 0;i < 360;i += 20){
 			GameObject newBullet = Instantiate(bullet);
 			newBullet.GetComponent<EnemyBullet>().facing = i+initialPosition;
 			newBullet.transform.position = transform.position;

@@ -33,9 +33,6 @@ public class PlayerShooter : MonoBehaviour {
 		{
 			gameObject.GetComponent<SpriteRenderer> ().sprite = NormalSprite;
 		}
-	}
-
-	void FixedUpdate(){
 		float movex = Input.GetAxis ("Horizontal");
 		float movey = Input.GetAxis ("Vertical");
 		float targetX;
@@ -53,16 +50,20 @@ public class PlayerShooter : MonoBehaviour {
 		if (targetY > BoundingBoxUp)	targetY = BoundingBoxUp;
 		if (targetY < BoundingBoxDown)	targetY = BoundingBoxDown;
 		gameObject.transform.position = new Vector2 (targetX, targetY);
-
+		
 		frameCount ++;
 		if (frameCount % bulletInterval == 0 && Input.GetKey (KeyCode.Z)) {
 			Instantiate (Bullet);
 		}
 	}
 
+	void FixedUpdate(){
+
+	}
+
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy") {
-			Destroy(gameObject);
+			Application.LoadLevel ("game");
 		}
 	}
 }

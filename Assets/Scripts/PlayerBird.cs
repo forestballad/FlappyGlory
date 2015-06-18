@@ -98,6 +98,12 @@ public class PlayerBird : MonoBehaviour {
 				GameObject.Find("DataAgentObject").GetComponent<DataAgent>().UnlockCharacter(12);
 			}
 			returnToTitle();
+		} else if (CurrentBird == "YeXiu"){
+			ScoreCheck();
+			if (scoreAtDeath > 5){
+				// Load the animation Scene, set umbrella
+			}
+			returnToTitle();
 		}
 	}
 

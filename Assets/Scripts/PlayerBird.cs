@@ -23,7 +23,11 @@ public class PlayerBird : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyUp ("space")) {
+		if (Input.GetKeyDown ("space") && CurrentBird != "GuiKe") {
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			GetComponent<Rigidbody2D>().AddForce(jumpForce);
+		}
+		else if (Input.GetMouseButtonDown(0) && CurrentBird != "FengShanGuiQi"){
 			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			GetComponent<Rigidbody2D>().AddForce(jumpForce);
 		}
@@ -33,7 +37,11 @@ public class PlayerBird : MonoBehaviour {
 		else{
 			GetComponent<SpriteRenderer>().sprite = BirdDown;
 		}
-		transform.localPosition = new Vector3 (-3.49f,transform.position.y,0);
+		if (CurrentBird == "GuiKe") {
+			transform.localPosition = new Vector3 (-0.41f, transform.position.y, 0);
+		} else {
+			transform.localPosition = new Vector3 (-3.49f, transform.position.y, 0);
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
@@ -92,6 +100,12 @@ public class PlayerBird : MonoBehaviour {
 				if (scoreAtDeath > 10) GameObject.Find("DataAgentObject").GetComponent<DataAgent>().UnlockCharacter(6);
 				returnToTitle();
 			}
+		}else if (CurrentBird == "FengShanGuiQi" || CurrentBird == "GuiKe"){
+			ScoreCheck();
+			if (scoreAtDeath > 5){
+				GameObject.Find("DataAgentObject").GetComponent<DataAgent>().UnlockCharacter(8);
+			}
+			returnToTitle();
 		} else if (CurrentBird == "ShiBuZhuan"){
 			ScoreCheck();
 			if (scoreAtDeath > 5){
@@ -104,7 +118,7 @@ public class PlayerBird : MonoBehaviour {
 				// Load the animation Scene, set umbrella
 			}
 			returnToTitle();
-		}
+		} 
 	}
 
 	void returnToTitle(){

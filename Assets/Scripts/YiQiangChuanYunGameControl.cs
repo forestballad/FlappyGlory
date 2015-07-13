@@ -15,6 +15,9 @@ public class YiQiangChuanYunGameControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		score -= 10;
+		if (score < 0) {
+			score = 0;
+		}
 		scoreText.GetComponent<Text> ().text = score.ToString ();
 	}
 }

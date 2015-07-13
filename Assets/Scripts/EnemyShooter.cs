@@ -19,6 +19,7 @@ public class EnemyShooter : MonoBehaviour {
 		if (currentHealth <= 0) {
 			Destroy(gameObject);
 			CancelInvoke("LaunchProjectile");
+			GameObject.Find("DataAgentObject").GetComponent<DataAgent> ().setHighScore("YiQiangChuanYun",GameObject.Find("Scripts").GetComponent<YiQiangChuanYunGameControl>().score);
 			GameObject.Find("DataAgentObject").GetComponent<DataAgent>().UnlockCharacter(10);
 			Application.LoadLevel ("game");
 		}
